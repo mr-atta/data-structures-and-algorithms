@@ -103,28 +103,18 @@ Return the modified array.
 const addValues = (arr, value) => {
   // Solution code here...
 
-  let newEl = value;
-
-  arr.forEach((elem) => {
-    arr.push(newEl);
-  });
+  arr.push(value);
 };
 
 const addNumbers = (num, arr, times, callback) => {
   // Solution code here...
-  let newarr = [];
-  let elemNew;
-  for (let i = 1; i < times; i++) {
-    arr.forEach((elemNew) => {
-      elemNew = callback(arr, num);
-      newarr.push(elemNew);
-    });
-
-    return newarr;
+  for (let i = 0; i < times; i++) {
+    callback(arr, num);
   }
+  return arr;
 };
 
-/* ------------------------------------------------------------------------------------------------
+/* ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 CHALLENGE 6
 
@@ -145,13 +135,9 @@ This function should use forEach to populate your grocery list based on the stor
 const createList = (availableItems) => {
   // Solution code here...
   let newarr = [];
-  let itemName;
-  let itemAva;
 
   availableItems.forEach((item) => {
-    itemAva = item.available;
-    if (itemAva == "true") {
-      itemName = item.name;
+    if (item.available == "true") {
       newarr.push(itemName);
     }
   });
