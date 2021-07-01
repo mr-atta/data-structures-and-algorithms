@@ -11,7 +11,10 @@ Push each updated animal string into the new array. Return the new array.
 
 HINT: Look at the tests to see how the callback functions are used.
 
------------------------------------------------------------------------------------------------- */
+--------------------------------------------------------------------------------
+["BeAr", "lIon"];
+    expect(updateAnimal(arr, upper)[0]).toStrictEqual("BEAR");
+    expect(updateAnimal(arr, upper)[1]).toStrictEqual("LION"); */
 
 function upper(str) {
   return str.toUpperCase();
@@ -23,6 +26,10 @@ function lower(str) {
 
 const updateAnimal = (arr, callback) => {
   // Solution code here...
+  arr.sort(function (a, b) {
+    a.upper(b);
+  });
+  return arr;
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -107,13 +114,9 @@ Here is an example of the input:
 ------------------------------------------------------------------------------------------------ */
 
 const sortByPrice = (arr) => {
-  arr.sort(function (a, b) {
-    if (a.price > b.price) {
-      return 1;
-    } else if (a.price < b.price) return 1;
-    else return 0;
-  });
+  arr.sort((a, b) => parseFloat(a.price) - parseFloat(b.price));
   return arr;
+
   // Solution code here...
 };
 
