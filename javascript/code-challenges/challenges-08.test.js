@@ -57,6 +57,10 @@ let characters = [
 
 const sortByChildren = (charArray) => {
   // Solution code here...
+  let sortByChildren = charArray.filter((ele) => {
+    return ele.children.length.sort();
+  });
+  return sortByChildren;
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -112,13 +116,18 @@ const containsWorld = (input) => {
 /* ------------------------------------------------------------------------------------------------
 CHALLENGE 5
 
-Write a function named isCapitalized that takes in a string. This function should use a regular expression pattern to match all words that begin with a capital letter. It should only match words, not punctuation.
+Write a function named isCapitalized that takes in a string. This function should use a regular expression pattern 
+to match all words that begin with a capital letter. 
+It should only match words, not punctuation.
 
 Return an array containing all the matches.
 ------------------------------------------------------------------------------------------------ */
 
 const isCapitalized = (str) => {
   // Solution code here...
+  let regexD = /\b[A-Z](\w)*/g;
+  // let resD =  str.match(regexD);
+  return str.match(regexD);
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -129,6 +138,14 @@ Write a function named citiesAtoJ that takes in an array of city names and uses 
 
 const citiesAtoJ = (arr) => {
   // Solution code here...
+  let regexD = /^[A-J](\w)*/g;
+
+  let newArr = arr.filter((ele, i) => {
+    if (regexD.test(ele)) {
+      return ele;
+    }
+  });
+  return newArr;
 };
 
 /* ------------------------------------------------------------------------------------------------
