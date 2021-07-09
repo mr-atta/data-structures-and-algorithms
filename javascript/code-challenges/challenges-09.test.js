@@ -50,23 +50,35 @@ CHALLENGE 3
 Write a function named checkValues that takes in an object and a value and returns true if the value is in the object.
 
 
------------------------------------------------------------------------------------------------- */
+----------------------------------------------------------------------------------------
+    expect(checkValues({ class: "301" }, "301")).toBe(true);        */
 
 const checkValues = (obj, value) => {
   // Solution code here...
-
-  // for (let index = 0; index < obj.length; index++) {
-  //   if (Object.keys[index].value == value || Object.keys[index] == value) {
+  // for (let property in obj) {
+  //   if (obj[property].indexOf(value) != -1) {
   //     return "true";
+  //   } else {
+  //     return "false";
   //   }
   // }
 
-  Object.values(obj).forEach((valueObj) => {
-    if (valueObj == value) {
+  Object.values(obj).forEach((property) => {
+    if (property == value) {
       return "true";
+    } else {
+      return "false";
     }
   });
-  return valueObj;
+
+  // let proparety = Object.values(obj).forEach((valueObj) => {
+  //   if (valueObj.value == value) {
+  //     return "true";
+  //   } else {
+  //     return "false";
+  //   }
+  // });
+  // return proparety;
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -90,6 +102,10 @@ HR has asked you to change the data to make it easier to print so that it looks 
 
 const updateNumbers = (obj) => {
   // Solution code here...
+  let properties = Object.keys(obj);
+  properties.forEach((property) => {
+    return `'${property} : ${obj[property]}'`;
+  });
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -144,6 +160,15 @@ const characters = [
 const getHouses = (arr) => {
   let houses = [];
   // Solution code here...
+  //
+  arr.forEach((obj) => {
+    houses.push(obj.house);
+  });
+  //
+  // Object.values(arr).forEach((value) => {
+  //   houses.push(value.house);
+  // });
+
   return houses;
 };
 
@@ -157,10 +182,20 @@ This function should take in an array of data and a character name and return a 
 For example:
 hasChildrenValues(characters, 'Cersei') will return true
 hasChildrenValues(characters, 'Sansa') will return false
------------------------------------------------------------------------------------------------- */
+---------------------------------------------------------------------------------------*/
 
 const hasChildrenValues = (arr, character) => {
   // Solution code here...
+
+  let data = Object.values(arr);
+
+  data.forEach((data) => {
+    if (arr[data] == character) {
+      return "true";
+    } else {
+      return "false";
+    }
+  });
 };
 
 /* ------------------------------------------------------------------------------------------------
