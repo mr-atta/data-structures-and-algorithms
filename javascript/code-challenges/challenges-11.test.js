@@ -20,7 +20,22 @@ Becomes:
 
 function transformToLis(obj) {
   // Solution code here...
-  // let result = Object.keys(obj).map((key) => [key, obj[key]]);
+  let result = Object.keys(obj).map(function (key) {
+    return [key, obj[key]];
+  });
+
+  let arr = [];
+
+  for (var i = 0; i < result.length; i++) {
+    for (var z = 0; z < result[i].length - 1; z++) {
+      arr.push("<li>" + result[i][z] + ": " + result[i][z + 1] + "</li>");
+      // document.write(result[i][z] + ":" + result[i][z + 1]);
+    }
+
+    //   document.write("</br>");
+  }
+  // console.log(arr);
+  return arr;
 }
 
 /* ------------------------------------------------------------------------------------------------
