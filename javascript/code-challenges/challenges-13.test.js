@@ -1,15 +1,30 @@
-'use strict';
+"use strict";
 
 /* ------------------------------------------------------------------------------------------------
 CHALLENGE 1 - Review
 
 Write a function named longestString that takes in an array of strings and returns the index position of the longest string. 
------------------------------------------------------------------------------------------------- */
+------------------------------------------------------------------------------------------------
+      ['Ginger', 'Goose', 'Tangerine', 'Rosie', 'Mario', 'Malaki'] >> 2
+      [] >> -1
+      ['Ginger'] >> 0
+ */
 
 const longestString = (arr) => {
-// Solution code here...
+  // Solution code here...
+
+  let key = -1;
+  let lengthStr = 0;
+  //
+  let data = arr.map((ele, i) => {
+    if (ele.length > lengthStr) {
+      lengthStr = ele.length;
+      key = i;
+    }
+  });
+  return key;
 };
-  
+
 /* ------------------------------------------------------------------------------------------------
 CHALLENGE 2
 
@@ -20,6 +35,10 @@ For example, ['this is great :)', 'wow', 'whyyyyyy :(', ':)))))'] returns ['t', 
 
 const firstLetters = (arr) => {
   // Solution code here...
+  let firstLetters = arr.map((ele) => {
+    return ele[0];
+  });
+  return firstLetters;
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -32,6 +51,15 @@ For example, ['this is great :)', 'wow', 'whyyyyyy :(', ':)))))'] returns ['this
 
 const findHappiness = (arr) => {
   // Solution code here...
+  let newData = arr.filter((ele) => {
+    let regexW = /(:\))/g;
+    let resW = regexW.test(ele);
+
+    if (resW == 1) {
+      return ele;
+    }
+  });
+  return newData;
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -40,10 +68,27 @@ CHALLENGE 4
 Write a function named standardizePhoneNumbers that takes in an array of phone number strings in (XXX) XXX-XXXX format and returns an array with the phone number strings in XXXXXXXXXX format.
 
 For example, (123) 456-7890 returns 1234567890
------------------------------------------------------------------------------------------------- */
+------------------------------------------------------------------------------------------------
+nums = ["(123) 456-7890", "(222) 222-2222"];
+>>>>>>>> [
+      "1234567890",
+      "2222222222",
+    ]
+ */
 
 const standardizePhoneNumbers = (arr) => {
   // Solution code here...
+  let newNumbers = [];
+  let newData = arr.filter((ele) => {
+    // filter one  ( ) -
+    const regex = /\(|\)|\-|/g;
+    let phone = ele.replace(regex, "");
+    // filter two space
+    let delSpace = phone.replace(" ", "");
+    console.log(delSpace);
+    newNumbers.push(delSpace);
+  });
+  return newNumbers;
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -56,6 +101,13 @@ For example, 'abcdefg' returns 'bdf'
 
 const onlyOddChars = (str) => {
   // Solution code here...
+  let odd = [];
+
+  for (let i = 0; i < str.length; i++) {
+    i % 2 != 0 ? odd.push(str[i]) : (i = i);
+  }
+
+  return odd.join("");
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -66,6 +118,15 @@ Write a function named allHappy that takes in an array of strings and returns a 
 
 const allHappy = (arr) => {
   // Solution code here...
+  let bool = [];
+  let newData = arr.filter((ele) => {
+    let regexW = /(:\))/g;
+    let resW = regexW.test(ele);
+    console.log(resW);
+    bool.push(resW);
+    return resW;
+  });
+  return bool;
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -125,7 +186,15 @@ For example, ['Tuesday', 'Monday', 'Wednesday and Thursday', 'Tuesday 2', 'Thurs
 ]
 ------------------------------------------------------------------------------------------------ */
 
-const daysOfWeek = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
+const daysOfWeek = [
+  "Monday",
+  "Tuesday",
+  "Wednesday",
+  "Thursday",
+  "Friday",
+  "Saturday",
+  "Sunday",
+];
 
 const sortByDay = (arr) => {
   // Solution code here...
@@ -154,11 +223,18 @@ Run your tests from the console: jest challenges-13.test.js
 
 ------------------------------------------------------------------------------------------------ */
 
-describe('Testing challenge 1', () => {
-  test('It should return an index position of the longest string', () => {
-    const strArray1 = ['Ginger', 'Goose', 'Tangerine', 'Rosie', 'Mario', 'Malaki']
+describe("Testing challenge 1", () => {
+  test("It should return an index position of the longest string", () => {
+    const strArray1 = [
+      "Ginger",
+      "Goose",
+      "Tangerine",
+      "Rosie",
+      "Mario",
+      "Malaki",
+    ];
     const strArray2 = [];
-    const strArray3= ['Ginger']
+    const strArray3 = ["Ginger"];
 
     expect(longestString(strArray1)).toStrictEqual(2);
     expect(longestString(strArray2)).toStrictEqual(-1);
@@ -166,123 +242,201 @@ describe('Testing challenge 1', () => {
   });
 });
 
-describe('Testing challenge 2', () => {
-  test('It should return the first letter of each element of the array', () => {
-    const words = ['apple', 'banana', 'cantaloupe'];
+describe("Testing challenge 2", () => {
+  test("It should return the first letter of each element of the array", () => {
+    const words = ["apple", "banana", "cantaloupe"];
 
-    expect(firstLetters(words)).toStrictEqual(['a', 'b', 'c']);
-    expect(firstLetters(['a', 'b', 'c', 'd'])).toStrictEqual(['a', 'b', 'c', 'd']);
+    expect(firstLetters(words)).toStrictEqual(["a", "b", "c"]);
+    expect(firstLetters(["a", "b", "c", "d"])).toStrictEqual([
+      "a",
+      "b",
+      "c",
+      "d",
+    ]);
     expect(firstLetters([])).toStrictEqual([]);
   });
 });
 
-describe('Testing challenge 3', () => {
-  test('It should return only the strings that contain smiley faces', () => {
-    const words = ['things', 'apple (:)', ':)banana', 'missing that thing', 'cant:)aloupe'];
+describe("Testing challenge 3", () => {
+  test("It should return only the strings that contain smiley faces", () => {
+    const words = [
+      "things",
+      "apple (:)",
+      ":)banana",
+      "missing that thing",
+      "cant:)aloupe",
+    ];
 
-    expect(findHappiness(words)).toStrictEqual(['apple (:)', ':)banana', 'cant:)aloupe']);
+    expect(findHappiness(words)).toStrictEqual([
+      "apple (:)",
+      ":)banana",
+      "cant:)aloupe",
+    ]);
     expect(findHappiness([])).toStrictEqual([]);
-    expect(findHappiness(['sadness'])).toStrictEqual([]);
-    expect(findHappiness([':) yay', ':( no', '', '', '', ''])).toStrictEqual([':) yay']);
+    expect(findHappiness(["sadness"])).toStrictEqual([]);
+    expect(findHappiness([":) yay", ":( no", "", "", "", ""])).toStrictEqual([
+      ":) yay",
+    ]);
   });
 });
 
-describe('Testing challenge 4', () => {
-  test('It should return a standardized set of phone numbers', () => {
-    const nums = ['(123) 456-7890', '(222) 222-2222'];
+describe("Testing challenge 4", () => {
+  test("It should return a standardized set of phone numbers", () => {
+    const nums = ["(123) 456-7890", "(222) 222-2222"];
 
-    expect(standardizePhoneNumbers(nums)).toStrictEqual(['1234567890', '2222222222']);
-    expect(standardizePhoneNumbers([nums[0]])).toStrictEqual(['1234567890']);
+    expect(standardizePhoneNumbers(nums)).toStrictEqual([
+      "1234567890",
+      "2222222222",
+    ]);
+    expect(standardizePhoneNumbers([nums[0]])).toStrictEqual(["1234567890"]);
   });
 });
 
-describe('Testing challenge 5', () => {
-  test('It should only return the odd indexed characters from the string', () => {
-    expect(onlyOddChars('0123456789')).toStrictEqual('13579');
-    expect(onlyOddChars('abcd')).toStrictEqual('bd');
-    expect(onlyOddChars('a')).toStrictEqual('');
-    expect(onlyOddChars('')).toStrictEqual('');
+describe("Testing challenge 5", () => {
+  test("It should only return the odd indexed characters from the string", () => {
+    expect(onlyOddChars("0123456789")).toStrictEqual("13579");
+    expect(onlyOddChars("abcd")).toStrictEqual("bd");
+    expect(onlyOddChars("a")).toStrictEqual("");
+    expect(onlyOddChars("")).toStrictEqual("");
   });
 });
 
-describe('Testing challenge 6', () => {
-  test('It should correctly assess whether all the strings are happy', () => {
-    const words = ['things', 'apple (:)', ':)banana', 'missing that thing', 'cant:)aloupe'];
+describe("Testing challenge 6", () => {
+  test("It should correctly assess whether all the strings are happy", () => {
+    const words = [
+      "things",
+      "apple (:)",
+      ":)banana",
+      "missing that thing",
+      "cant:)aloupe",
+    ];
 
     expect(allHappy(words)).toStrictEqual(false);
-    expect(allHappy(['apple (:)', ':)banana', 'cant:)aloupe'])).toStrictEqual(true);
+    expect(allHappy(["apple (:)", ":)banana", "cant:)aloupe"])).toStrictEqual(
+      true
+    );
     expect(allHappy([])).toStrictEqual(true);
   });
 });
 
-xdescribe('Testing challenge 7', () => {
-  test('It should find all the strings that contain a given string', () => {
-    const words = ['things', 'apple (:)', ':)banana', 'missing that thing', 'cant:)aloupe'];
+xdescribe("Testing challenge 7", () => {
+  test("It should find all the strings that contain a given string", () => {
+    const words = [
+      "things",
+      "apple (:)",
+      ":)banana",
+      "missing that thing",
+      "cant:)aloupe",
+    ];
 
-    expect(findAnything(words, ':)')).toStrictEqual(findHappiness(words));
-    expect(findAnything(words, 'i')).toStrictEqual(['things', 'missing that thing']);
+    expect(findAnything(words, ":)")).toStrictEqual(findHappiness(words));
+    expect(findAnything(words, "i")).toStrictEqual([
+      "things",
+      "missing that thing",
+    ]);
   });
 });
 
-xdescribe('Testing challenge 8', () => {
-  test('It should determine whether all the strings contain a given string', () => {
-    const words = ['things', 'apple pie (:)', ':)banana pie', 'missing that thing', 'cant:)aloupe is tasty'];
+xdescribe("Testing challenge 8", () => {
+  test("It should determine whether all the strings contain a given string", () => {
+    const words = [
+      "things",
+      "apple pie (:)",
+      ":)banana pie",
+      "missing that thing",
+      "cant:)aloupe is tasty",
+    ];
 
-    expect(findEvery(words, 'a')).toStrictEqual(false);
-    expect(findEvery(words, '')).toStrictEqual(true);
-    expect(findEvery(words, 'i')).toStrictEqual(true);
+    expect(findEvery(words, "a")).toStrictEqual(false);
+    expect(findEvery(words, "")).toStrictEqual(true);
+    expect(findEvery(words, "i")).toStrictEqual(true);
   });
 });
 
-xdescribe('Testing challenge 9', () => {
-  test('It should remove Brook from all courses', () => {
+xdescribe("Testing challenge 9", () => {
+  test("It should remove Brook from all courses", () => {
     const roster = [
-      ['Michelle', 'Allie', 'Brook TESTING'],
-      ['Brook Riggio', 'hey look it\'s Brook', 'Jennifer'],
-      ['Nicholas', 'Sam', 'Scott', 'Vinicio']
+      ["Michelle", "Allie", "Brook TESTING"],
+      ["Brook Riggio", "hey look it's Brook", "Jennifer"],
+      ["Nicholas", "Sam", "Scott", "Vinicio"],
     ];
 
     expect(unenrollBrook(roster)).toStrictEqual([
-      ['Michelle', 'Allie'],
-      ['Jennifer'],
-      ['Nicholas', 'Sam', 'Scott', 'Vinicio']
+      ["Michelle", "Allie"],
+      ["Jennifer"],
+      ["Nicholas", "Sam", "Scott", "Vinicio"],
     ]);
-    expect(unenrollBrook([['Brook', 'person'], [], ['person', 'person', 'Brook']])).toStrictEqual([['person'], [], ['person', 'person']]);
+    expect(
+      unenrollBrook([["Brook", "person"], [], ["person", "person", "Brook"]])
+    ).toStrictEqual([["person"], [], ["person", "person"]]);
     expect(unenrollBrook([])).toStrictEqual([]);
   });
 });
 
-xdescribe('Testing challenge 10', () => {
-  test('It should sort events by the day on which they happen', () => {
-    const events = ['Dancing on Mondays and Tuesdays', 'Meet the inventors! Monday, August 7', 'in the club on a Tuesday', 'Thursday Night Code', 'Saturday Night Fever'];
+xdescribe("Testing challenge 10", () => {
+  test("It should sort events by the day on which they happen", () => {
+    const events = [
+      "Dancing on Mondays and Tuesdays",
+      "Meet the inventors! Monday, August 7",
+      "in the club on a Tuesday",
+      "Thursday Night Code",
+      "Saturday Night Fever",
+    ];
     const sortedEvents = sortByDay(events);
-    expect(sortedEvents[0]).toEqual(expect.arrayContaining(['Dancing on Mondays and Tuesdays', 'Meet the inventors! Monday, August 7']));
-    expect(sortedEvents[1]).toEqual(expect.arrayContaining(['Dancing on Mondays and Tuesdays', 'in the club on a Tuesday']));
+    expect(sortedEvents[0]).toEqual(
+      expect.arrayContaining([
+        "Dancing on Mondays and Tuesdays",
+        "Meet the inventors! Monday, August 7",
+      ])
+    );
+    expect(sortedEvents[1]).toEqual(
+      expect.arrayContaining([
+        "Dancing on Mondays and Tuesdays",
+        "in the club on a Tuesday",
+      ])
+    );
     expect(sortedEvents[2]).toStrictEqual([]);
-    expect(sortedEvents[3]).toStrictEqual(['Thursday Night Code']);
+    expect(sortedEvents[3]).toStrictEqual(["Thursday Night Code"]);
     expect(sortedEvents[4]).toStrictEqual([]);
-    expect(sortedEvents[5]).toStrictEqual(['Saturday Night Fever']);
+    expect(sortedEvents[5]).toStrictEqual(["Saturday Night Fever"]);
     expect(sortedEvents[6]).toStrictEqual([]);
 
-    const events2 = ['Tuesday', 'Monday', 'Wednesday and Thursday', 'Tuesday 2', 'Thursday'];
+    const events2 = [
+      "Tuesday",
+      "Monday",
+      "Wednesday and Thursday",
+      "Tuesday 2",
+      "Thursday",
+    ];
     const sortedEvents2 = sortByDay(events2);
-    expect(sortedEvents2[0]).toStrictEqual(['Monday']);
-    expect(sortedEvents2[1]).toEqual(expect.arrayContaining(['Tuesday', 'Tuesday 2']));
-    expect(sortedEvents2[2]).toStrictEqual(['Wednesday and Thursday']);
-    expect(sortedEvents2[3]).toEqual(expect.arrayContaining(['Wednesday and Thursday', 'Thursday']));
+    expect(sortedEvents2[0]).toStrictEqual(["Monday"]);
+    expect(sortedEvents2[1]).toEqual(
+      expect.arrayContaining(["Tuesday", "Tuesday 2"])
+    );
+    expect(sortedEvents2[2]).toStrictEqual(["Wednesday and Thursday"]);
+    expect(sortedEvents2[3]).toEqual(
+      expect.arrayContaining(["Wednesday and Thursday", "Thursday"])
+    );
     expect(sortedEvents2[4]).toStrictEqual([]);
     expect(sortedEvents2[5]).toStrictEqual([]);
     expect(sortedEvents2[6]).toStrictEqual([]);
   });
 });
 
-xdescribe('Testing challenge 11', () => {
-  test('It should return the ith character of the ith string', () => {
-    const words = ['apple', 'banana', 'cantaloupe'];
+xdescribe("Testing challenge 11", () => {
+  test("It should return the ith character of the ith string", () => {
+    const words = ["apple", "banana", "cantaloupe"];
 
-    expect(characterByIndex(words)).toStrictEqual(['a', 'a', 'n']);
-    expect(characterByIndex(['abc', 'def', 'ghi'])).toStrictEqual(['a', 'e', 'i']);
-    expect(characterByIndex(['wow', 'wow', 'wow'])).toStrictEqual(['w', 'o', 'w']);
+    expect(characterByIndex(words)).toStrictEqual(["a", "a", "n"]);
+    expect(characterByIndex(["abc", "def", "ghi"])).toStrictEqual([
+      "a",
+      "e",
+      "i",
+    ]);
+    expect(characterByIndex(["wow", "wow", "wow"])).toStrictEqual([
+      "w",
+      "o",
+      "w",
+    ]);
   });
 });
-
