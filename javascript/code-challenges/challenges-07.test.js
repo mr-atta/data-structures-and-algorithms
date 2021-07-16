@@ -26,15 +26,6 @@ let starWarsPeople = [
 
 const sortStarWarsCharacters = (starWarsArr) => {
   // Solution code here...
-  let sort = starWarsArr.map((element, indx) => {
-    if (element.name.length < starWarsPeople[indx + 1].name.length) {
-      let sort1 = starWarsPeople.sort((a, b) => b - a);
-      return sort1;
-    } else {
-      return element;
-    }
-  });
-  return sort;
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -80,16 +71,12 @@ For example, if the input is 'Welcome', the output will be:
 const howMuchPencil = (str) => {
   let result = [];
   // Solution code here...
-  for (let index = 0; index < str.split("").length; index++) {
-    result.push(str);
-
-    let arr = str.split("");
-    let shifted = arr.shift();
-
-    let str = arr.join("");
+  const ele = str.split("");
+  let remove;
+  for (let i = 0; i < ele.length; i++) {
+    remove = str.substring(i + 1);
+    return remove;
   }
-
-  return result;
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -149,6 +136,9 @@ const gruffaloCrumble = {
 const listFoods = (recipe) => {
   let result = [];
   // Solution code here...
+  let remove = gruffaloCrumble[ingredients].forEach((element) => {
+    result.push(element.split(" ").slice(2));
+  });
   return result;
 };
 
@@ -163,6 +153,7 @@ You may also use other string or array methods.
 const splitFoods = (recipe) => {
   let result = [];
   // Solution code here...
+
   return result;
 };
 
