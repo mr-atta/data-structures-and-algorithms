@@ -50,6 +50,16 @@ For example, count(5, [[1, 3, 5, 7, 9], [5, 5, 5], [1, 2, 3]]) returns 4.
 
 const count = (target, input) => {
   // Solution code here...
+  let count = 0;
+
+  for (let i = 0; i < input.length; i++) {
+    for (let j = 0; j < input[i].length; j++) {
+      if (input[i][j] == target) {
+        count++;
+      }
+    }
+  }
+  return count;
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -87,15 +97,19 @@ For example, [ [0,2,5,4], [2,4,10], [] ] should return [ [1, 32], [1024], [] ].
 
 const divisibleByFiveTwoToThePower = (input) => {
   // Solution code here...
+  let finalResult = [];
   let result = [];
+
   for (let i = 0; i < input.length; i++) {
     for (let j = 0; j < input[i].length; j++) {
-      if (input[i][j] % 5 != 0) {
-        result.push(2 ^ input[i][j]);
+      if (input[i][j] % 5 == 0) {
+        result.push(Math.pow(2, input[i][j]));
       }
     }
+    finalResult.push(result);
+    result = [];
   }
-  return result;
+  return finalResult;
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -161,28 +175,42 @@ let starWarsData = [
     gender: "female",
   },
 ];
+//   findMaleAndFemale([
+//   { name: "person", gender: "female" },
+//   { gender: "lol" },
+//   { name: "persontwo", gender: "male" },
+// ])
+// ).toStrictEqual("person and persontwo");
 
 let findMaleAndFemale = (data) => {
   // Solution code here...
+  let nameMF = [];
+  for (let i = 0; i < data.length; i++) {
+    if (data[i].gender == "male" || data[i].gender == "female") {
+      nameMF.push(data[i].name);
+    }
+  }
+  return nameMF.join(" and ");
 };
 
 /* ------------------------------------------------------------------------------------------------
 CHALLENGE 6 
 
 Write a function named findShortest that, given the Star Wars data from Challenge 6, uses any combination of filter, map and reduce to return the name of the character who is the shortest in height.
------------------------------------------------------------------------------------------------- */
+------------------------------------------------------------------------------------------------
+   expect(findShortest(starWarsData)).toStrictEqual("R2-D2"); ------------------------------------- */
 
 let findShortest = (data) => {
   // Solution code here...
-  let high = 0;
-  let shortest = {};
-  data.forEach((element) => {
-    if (element.height < high) {
-      shortest = element;
-      high = element.height;
+  let lengthName = 100;
+  let shorterName = "";
+  for (let i = 0; i < data.length; i++) {
+    if (data[i].name.length <= lengthName) {
+      lengthName = data[i].name.length;
+      shorterName = data[i].name;
     }
-  });
-  return shortest.name;
+  }
+  return shorterName;
 };
 
 /* ------------------------------------------------------------------------------------------------
