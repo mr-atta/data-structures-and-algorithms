@@ -5,14 +5,40 @@ CHALLENGE 1 - Review
 
 Write a function named returnTen, takes in a string and uses split and splice to return the last 10 characters from that string as elements of an array.
 
------------------------------------------------------------------------------------------------- */
+------------------------------------------------------------------------------------------------
+ expect(returnTen("hello world")).toStrictEqual([
+      "e",
+      "l",
+      "l",
+      "o",
+      " ",
+      "w",
+      "o",
+      "r",
+      "l",
+      "d",
+    ]);
+    or 
+    expect(returnTen("world")).toStrictEqual(["w", "o", "r", "l", "d"]);
+
+   */
 
 function returnTen(str) {
   // Solution code here...
-  const words = str.split("");
-  // let lenght = words.lenght;
-  let remove = str.splice(0, words.lenght - 10);
-  return words.join();
+  let words = str.split("");
+  let newStr = [];
+
+  for (let i = 0; i < 10; i++) {
+    newStr.push(words[words.length - 10]);
+    words.length++;
+  }
+  const data = newStr.filter((ele) => {
+    if (ele != "undefined") {
+      return ele;
+    }
+  });
+
+  return data;
 }
 
 /* ------------------------------------------------------------------------------------------------
