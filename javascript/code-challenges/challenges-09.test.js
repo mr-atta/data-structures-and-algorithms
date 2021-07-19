@@ -51,34 +51,29 @@ Write a function named checkValues that takes in an object and a value and retur
 
 
 ----------------------------------------------------------------------------------------
-    expect(checkValues({ class: "301" }, "301")).toBe(true);        */
+    expect(checkValues({ class: "301" }, "301")).toBe(true);
+        expect(checkValues({ class: "301" }, "401")).toBe(false);
+        */
 
 const checkValues = (obj, value) => {
   // Solution code here...
-  // for (let property in obj) {
-  //   if (obj[property].indexOf(value) != -1) {
-  //     return "true";
-  //   } else {
-  //     return "false";
-  //   }
-  // }
 
-  Object.values(obj).forEach((property) => {
-    if (property == value) {
-      return "true";
+  // let valueArray = Object.values(obj).forEach((property) => {
+  //   property === value ? "true" : "false";
+  // });
+  // return valueArray;
+
+  // //////////////////////////////
+  let result;
+  let valueArray = Object.values(obj);
+  valueArray.forEach((element) => {
+    if (element == value) {
+      result = true;
     } else {
-      return "false";
+      result = false;
     }
   });
-
-  // let proparety = Object.values(obj).forEach((valueObj) => {
-  //   if (valueObj.value == value) {
-  //     return "true";
-  //   } else {
-  //     return "false";
-  //   }
-  // });
-  // return proparety;
+  return result;
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -102,10 +97,7 @@ HR has asked you to change the data to make it easier to print so that it looks 
 
 const updateNumbers = (obj) => {
   // Solution code here...
-  let properties = Object.keys(obj);
-  properties.forEach((property) => {
-    return `'${property} : ${obj[property]}'`;
-  });
+  return Object.entries(obj).map((value) => value.join(": "));
 };
 
 /* ------------------------------------------------------------------------------------------------
