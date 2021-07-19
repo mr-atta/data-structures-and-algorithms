@@ -210,17 +210,12 @@ https:/missingslash.org returns false because the URL is malformed
 ------------------------------------------------------------------------------------------------ */
 const isSecure = (url) => {
   // Solution code here...
-  let regexW = /^https?:\/\//g;
-  let bool = regexW.test(url);
-  return bool;
-
-  // ////////////////////////////////////////////////////////////////////////////
-  // // I tested it and it's works correctly, What is the problem?
-  // let url = "https://secure.com" ;
-  // let regexW = /(^https?:\/\/)/g;
-  //   let resW = regexW.test(url);
-  // console.log(resW);
-  // ////////////////////////////////////////////////////////////////////////////
+  let bool = /^https:\/\//g.test(url);
+  if (bool) {
+    return true;
+  } else {
+    return false;
+  }
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -244,51 +239,26 @@ Here is a sample board:
 
 const detectTicTacToeWin = (board) => {
   // Solution code here...
-  let O_R = 0;
-  let O_C = 0;
-  let O_D = 0;
+  let line1 = board[0];
+  let line2 = board[1];
+  let line3 = board[2];
 
-  let X_R = 0;
-  let X_C = 0;
-  let X_D = 0;
-
-  for (let i = 0; i < 3; i++) {
-    for (let j = 0; j < 3; j++) {
-      //  [i][j]  Row
-      //  [j][i]  Col
-      //  [j][j]  Dig
-      if (board[i][j] == "O") {
-        O_R++;
-      } //
-      else if (board[j][i] == "O") {
-        O_C++;
-      } //
-      else if (board[j][j] == "O") {
-        O_D++;
-      } //
-      //
-      if (board[i][j] == "X") {
-        X_R++;
-      } // 1
-      else if (board[j][i] == "X") {
-        X_C++;
-      } //
-      else if (board[j][j] == "X") {
-        X_D++;
-      } //
+  for (let i = 0; i < board.length; i++) {
+    if (
+      (line1[0] == line2[0]) == line3[0] ||
+      (line1[0] == line2[1]) == line3[2] ||
+      (line1[2] == line2[1]) == line3[0] ||
+      (line1[0] == line1[1]) == line1[2] ||
+      (line2[0] == line2[1]) == line2[2] ||
+      (line3[0] == line3[1]) == line3[2] ||
+      (line1[1] == line2[1]) == line3[1] ||
+      (line1[2] == line2[2]) == line3[2]
+    ) {
+      return true;
+    } else {
+      return false;
     }
   }
-  if (O_R == 5 || O_C == 5 || O_D == 5) {
-    // console.log("O is wine");
-    return "true";
-  } else if (X_R == 5 || X_C == 5 || X_D == 5) {
-    // console.log("X is wine");
-    return "true";
-  } else {
-    return "false";
-  }
-
-  // console.log({ O_R }, { O_C }, { O_D }, { X_R }, { X_C }, { X_D });
 };
 
 /* ------------------------------------------------------------------------------------------------
