@@ -118,15 +118,24 @@ Write a function named allHappy that takes in an array of strings and returns a 
 
 const allHappy = (arr) => {
   // Solution code here...
-  let bool = [];
-  let newData = arr.filter((ele) => {
-    let regexW = /(:\))/g;
-    let resW = regexW.test(ele);
-    console.log(resW);
-    bool.push(resW);
-    return resW;
+  let newData = [];
+  let result = "";
+
+  arr.map((ele) => {
+    if (ele.includes(":)")) {
+      newData.push(true);
+    } else {
+      newData.push(false);
+    }
   });
-  return bool;
+  //
+  if (newData.includes(false)) {
+    result = false;
+  } else {
+    result = true;
+  }
+
+  return result;
 };
 
 /* ------------------------------------------------------------------------------------------------
