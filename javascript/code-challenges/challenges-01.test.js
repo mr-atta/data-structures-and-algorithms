@@ -134,11 +134,13 @@ This function should use forEach to populate your grocery list based on the stor
 
 const createList = (availableItems) => {
   // Solution code here...
+  // to save new data (list)
   let newarr = [];
 
+  // forEach
   availableItems.forEach((item) => {
-    if (item.available == "true") {
-      newarr.push(itemName);
+    if (item.available == true) {
+      newarr.push(item.name);
     }
   });
   return newarr;
