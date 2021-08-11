@@ -16,12 +16,10 @@ You can assume that neither firstName nor lastName will be blank
 const toLastNames = (people) => {
   // Solution code here...
   let newArry = [];
-  let fullName = people.map(function (n, i) {
-    let a = [n.firstName + " " + n.lastName];
-    newArry.push(a);
-    return a;
+  let fullName = people.map((ele) => {
+    newArry.push(ele.firstName + " " + ele.lastName);
   });
-  return fullName;
+  return newArry;
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -152,11 +150,11 @@ let starWarsData = [
 
 const returnNames = (arr) => {
   // Solution code here...
+  let newArry = [];
   let names = arr.reduce((acc, val, i, starWarsData) => {
-    acc = acc + val.name;
-    return acc;
-  }, []);
-  return names;
+    newArry.push(val.name);
+  }, 0);
+  return newArry;
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -173,13 +171,9 @@ expect(reversedString("Code 301")).toStrictEqual("103 edoC");
 
 const reversedString = (str) => {
   // Solution code here...
-  // let x = 8;
-  let newStr = str.reduce((a, b) => {
-    // acc = val.unshift(val + x);
-    // x - 1;
-    return `${b}, ...${a}`;
-  }, "");
-  return newStr;
+  let newData = str.split("").reduce((acc, value) => value + acc, "");
+
+  return newData;
 };
 
 /* ------------------------------------------------------------------------------------------------
