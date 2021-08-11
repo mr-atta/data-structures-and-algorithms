@@ -57,12 +57,18 @@ let characters = [
 
 const sortByChildren = (charArray) => {
   // Solution code here...
-  let sortByChildren = charArray.filter((ele) => {
-    return ele.children.length.sort();
+  charArray.sort((one, two) => {
+    if (one.children.length > two.children.length) {
+      return 1;
+    } else if (one.children.length < two.children.length) {
+      return -1;
+    } else if (one.children.length == two.children.length) {
+      let equal = one.house.localeCompare(two.house);
+      return equal;
+    }
   });
-  return sortByChildren;
+  return charArray;
 };
-
 /* ------------------------------------------------------------------------------------------------
 CHALLENGE 2
 
@@ -125,9 +131,19 @@ Return an array containing all the matches.
 
 const isCapitalized = (str) => {
   // Solution code here...
-  let regexD = /\b[A-Z](\w)*/g;
-  // let resD =  str.match(regexD);
-  return str.match(regexD);
+  // let regexD = /\b[A-Z](\w)*/g;
+  // // let resD =  str.match(regexD);
+  // return str.match(regexD);
+  ///////////////////////
+  // Solution code here...
+
+  let regex = /\b[A-Z](\w)*/g;
+  let result = str.match(regex);
+  if (result == null) {
+    return [];
+  } else {
+    return result;
+  }
 };
 
 /* ------------------------------------------------------------------------------------------------
