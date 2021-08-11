@@ -71,12 +71,19 @@ For example, if the input is 'Welcome', the output will be:
 const howMuchPencil = (str) => {
   let result = [];
   // Solution code here...
-  const ele = str.split("");
-  let remove;
-  for (let i = 0; i < ele.length; i++) {
-    remove = str.substring(i + 1);
-    return remove;
+  // const ele = str.split("");
+  // let remove;
+  // for (let i = 0; i < ele.length; i++) {
+  //   remove = str.substring(i + 1);
+  //   return remove;
+  // }
+
+  let length = str.length;
+  for (let i = 0; i <= length; i++) {
+    result.push(str.slice(0));
+    str = str.slice(1);
   }
+  return result;
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -136,8 +143,14 @@ const gruffaloCrumble = {
 const listFoods = (recipe) => {
   let result = [];
   // Solution code here...
-  let remove = gruffaloCrumble[ingredients].forEach((element) => {
-    result.push(element.split(" ").slice(2));
+  let newArray = recipe.ingredients;
+
+  newArray.map((item, index) => {
+    let splittedItem = item.split(" ");
+
+    let slicedName = splittedItem.slice(2, splittedItem.length);
+    let joined = slicedName.join(" ");
+    result.push(joined);
   });
   return result;
 };
