@@ -33,10 +33,18 @@ const getNames = (arr) => {
   // //////////////////
   // return arr.map((n) => n.name);
   // ////////////////////
-  let names = arr.map((n) => n.name);
+  let newArray = arr.map((ele, i) => {
+    return ele.name;
+  });
 
-  return names;
-  // console.log(names);
+  let reverseString = newArray.map((ele) => {
+    let reversed = ele.split("").reduce((acc, ele, i) => {
+      return ele + acc;
+    }, "");
+
+    return reversed;
+  });
+  return reverseString;
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -78,12 +86,7 @@ console.log(a) prints [1, 2, 3, 1]
 const appendFirstToLast = (arr) => {
   // Solution code here...
 
-  let oneEl = arr[0];
-  let arrNew = arr.filter((n, i) => true);
-  arrNew.push(oneEl);
-  // return arrNew;
-
-  // return ["Yes", "it", "is", "Yes"];
+  arr.push(arr[0]);
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -103,11 +106,12 @@ console.log(a) prints { fullName: 'Octavia Estelle Butler', yearBorn: 1947 }
 
 const addBirthYearProperty = (obj, year) => {
   // Solution code here...
-  var obj = new Object();
-  obj.yearBorn = `${year}`;
+  // var obj = new Object();
+  // obj.yearBorn = `${year}`;
 
-  // return obj;
-  // console.log(obj);
+  // // return obj;
+  // // console.log(obj);
+  obj.yearBorn = year;
 };
 
 /* ------------------------------------------------------------------------------------------------
