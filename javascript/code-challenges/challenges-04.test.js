@@ -25,11 +25,13 @@ function lower(str) {
 }
 
 const updateAnimal = (arr, callback) => {
+  let newArry = [];
   // Solution code here...
-  arr.sort(function (a, b) {
-    a.upper(b);
+
+  arr.forEach((ele) => {
+    newArry.push(callback(ele));
   });
-  return arr;
+  return newArry;
 };
 
 /* ------------------------------------------------------------------------------------------------
