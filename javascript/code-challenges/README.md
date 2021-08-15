@@ -1,3 +1,19 @@
+# Data Structures and Algorithms
+
+# 401 code
+
+# Reverse an Array
+
+<!-- Description of the challenge -->
+
+- the Pseudocode part
+
+## Whiteboard Process
+
+<!-- Embedded whiteboard image -->
+
+![array-reverse](/img/array-reverse.PNG)
+
 # Code Challenges
 
 Part of growing as a programmer is to practice, practice, practice. Throughout this course, you will complete a set of daily code challenges. Each set will contain up to ten problems.
